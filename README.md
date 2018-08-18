@@ -12,10 +12,10 @@ The program will output all the differents combinations that can be done accordi
 ## Results obtained
   
   Interpretation of data:
-    * `list of cities` followed by comas   
-    * `list of flights` followed by comas 
-    * `departure`_`arrival` followed by comas
-    * `price` the total price 
+    * `list of cities` followed by comas <br/>  
+    * `list of flights` followed by comas <br/>  
+    * `departure`_`arrival` followed by comas <br/>  
+    * `price` the total price <br/>  
 
   Example of output:
 ```
