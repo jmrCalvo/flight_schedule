@@ -7,15 +7,15 @@ The program will output all the differents combinations that can be done accordi
   
       specifying the number of bags:                     cat input.csv | ./flight_combination.py 2 > output.csv
     
-      whithout specifying, predetimante value = 0:       cat input.csv | ./flight_combination > output.csv
+      whithout specifying, predetimante value = 0:       cat input.csv | ./flight_combination.py > output.csv
     
 ## Results obtained
   
   **Interpretation of data:** <br/>  
-    * `list of cities` followed by comas <br/>  
-    * `list of flights` followed by comas <br/>  
-    * `departure`_`arrival` followed by comas <br/>  
-    * `price` the total price <br/>  
+  *`list of cities` followed by comas <br/>  
+  *`list of flights` followed by comas <br/>  
+  *`departure`_`arrival` followed by comas <br/>  
+  *`price` the total price <br/>  
 
  **Example of output:**
 ```
