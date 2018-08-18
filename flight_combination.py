@@ -31,6 +31,7 @@ class Flights():
          self.bag_price=float(bp)
          self.flight_number=fl
 
+    #This three functions are for not add to the set repeated elements     
      def print_plane(self):
         print(self.flight_number)
 

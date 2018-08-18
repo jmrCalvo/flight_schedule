@@ -1,16 +1,16 @@
-# Flights Schedule
+# Flights Combinations
 The program will output all the differents combinations that can be done according to some especificaiones described on
 [Python weekend Kiwi.com](https://gist.github.com/martin-kokos/6ccdeeff45a33bce4849567b0395526c)
 
 ## Compile
   There is two ways of use it:
-  
+
       specifying the number of bags:                     cat input.csv | ./flight_combination.py 2 > output.csv
-    
+
       whithout specifying, predetimante value = 0:       cat input.csv | ./flight_combination.py > output.csv
-    
+
 ## Results obtained
-  
+
   **Interpretation of data:** <br/>  
     `list of cities` followed by comas <br/>  
     `list of flights` followed by comas <br/>  
