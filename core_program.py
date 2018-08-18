@@ -67,16 +67,16 @@ def updatePrice(price,flight,n_bags):
     total+=price
     return total
 
-def printfligh(itineracy,price):
+def printfligh(itineracy,price,time):
     total=str(price)
-    line="%s;%s" % (itineracy,total)
+    line="%s;%s;%s" % (itineracy,total,time)
     line=line.replace("\n","")
-    
+
     print (line)
     sys.stdout.flush()
 
 
-def addInitial(availables_flights,city,last_flight_taken,way_done,price,n_bags):
+def addInitial(availables_flights,city,last_flight_taken,way_done,price,n_bags,time):
     selected_flights=set()
     for flights in availables_flights:
         if flights.destination == city:
@@ -87,11 +87,12 @@ def addInitial(availables_flights,city,last_flight_taken,way_done,price,n_bags):
     for next_flight in selected_flights:
         new_way_done=updateWay(way_done,next_flight)
         new_price=updatePrice(price,next_flight,n_bags)
-        printfligh(new_way_done,new_price)
+        new_time=time+"_"+next_flight.departure+","+next_flight.arrival
+        printfligh(new_way_done,new_price,new_time)
 
-def coreFunction(availables_flights,first_city,cities_visited,last_flight_taken,way_done,price,n_bags):
+def coreFunction(availables_flights,first_city,cities_visited,last_flight_taken,way_done,price,n_bags,time):
     #include here the first flight taken in each instance to the stdout*****!!!!!!!!!!!
-    printfligh(way_done,price)
+    printfligh(way_done,price,time)
     selected_flights=set()
 
     for flights in availables_flights:
@@ -109,12 +110,13 @@ def coreFunction(availables_flights,first_city,cities_visited,last_flight_taken,
         for cities in cities_visited:
             newcities_visited.add(cities)
         newcities_visited.add(next_flight.source)
-
+        new_time=time+","+next_flight.departure+","+next_flight.arrival
         new_way_done=updateWay(way_done,next_flight)
         new_price=updatePrice(price,next_flight,n_bags)
-        coreFunction(availables_flights,first_city,newcities_visited,next_flight,new_way_done,new_price,n_bags)
 
-    addInitial(availables_flights,first_city,last_flight_taken,way_done,price,n_bags)
+        coreFunction(availables_flights,first_city,newcities_visited,next_flight,new_way_done,new_price,n_bags,new_time)
+
+    addInitial(availables_flights,first_city,last_flight_taken,way_done,price,n_bags,time)
 
 def starter(flights_set,n_bags=0):
     availables_flights=set()
@@ -132,9 +134,9 @@ def starter(flights_set,n_bags=0):
 
         way=a_flight.source+","+a_flight.destination+";"+a_flight.flight_number+"\n"
         price= a_flight.price + n_bags * a_flight.bag_price
+        time=a_flight.departure+","+a_flight.arrival
 
-
-        coreFunction(availables_flights,a_flight.source,cities_visited,a_flight,way,price,n_bags)
+        coreFunction(availables_flights,a_flight.source,cities_visited,a_flight,way,price,n_bags,time)
 
 
 #***************this is the first line of the main******************************
