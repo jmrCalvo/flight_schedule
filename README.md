@@ -1,5 +1,5 @@
 # Flights Schedule
-The program will output all the differents combinations that can be done according to some especificaiones dercibed on
+The program will output all the differents combinations that can be done according to some especificaiones described on
 [Python weekend Kiwi.com](https://gist.github.com/martin-kokos/6ccdeeff45a33bce4849567b0395526c)
 
 ## Compile
