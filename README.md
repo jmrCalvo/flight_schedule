@@ -5,8 +5,8 @@ The program will output all the differents combinations that can be done accordi
 ## Compile
   There is two ways of use it:
   
-    specifying the number of bags:         `cat input.csv | ./core_program.py 2 > output.csv` 
+    **specifying the number of bags:**                           cat input.csv | ./core_program.py 2 > output.csv
     
-    whithout specifying and it will be 0:  `cat input.csv | ./core_program.py > output.csv` 
+    **whithout specifying, predetimante value = 0: **            cat input.csv | ./core_program.py > output.csv
     
 ## Results obtained
