@@ -12,14 +12,14 @@ The program will output all the differents combinations that can be done accordi
 ## Results obtained
   
   **Interpretation of data:** <br/>  
-  *`list of cities` followed by comas <br/>  
-  *`list of flights` followed by comas <br/>  
-  *`departure`_`arrival` followed by comas <br/>  
-  *`price` the total price <br/>  
+    `list of cities` followed by comas <br/>  
+    `list of flights` followed by comas <br/>  
+    `departure`_`arrival` followed by comas <br/>  
+    `price` the total price <br/>  
 
  **Example of output:**
 ```
-list of cities;list of flights;departure_arrival;price
+list of cities; list of flights; departure_arrival;                                                          price
 
 DPS,HKT;      PV414;        2017-02-11T09:15:00_2017-02-11T12:55:00;                                           67.0
 DPS,HKT,USM;  PV414,PV243;  2017-02-11T09:15:00_2017-02-11T12:55:00,2017-02-11T15:45:00_2017-02-11T16:40:00;   89.0
