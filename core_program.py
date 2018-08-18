@@ -43,7 +43,7 @@ def createEach(flights_set,line):
     flight_n.create(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7])
     flights_set.add(flight_n)
 
-def calculatehours(time_dep,time_arr):
+def calculateHours(time_dep,time_arr):
     begining=datetime.datetime.strptime(time_dep,"%Y-%m-%dT%H:%M:%S")
     end=datetime.datetime.strptime(time_arr,"%Y-%m-%dT%H:%M:%S")
     days=(begining-end).days
@@ -54,21 +54,67 @@ def calculatehours(time_dep,time_arr):
         hours=seconds/3600;
         return hours
 
-def core_function(availables_flights,first_city,cities_visited,cities_nonvisited,last_flight_taken,way_done,price,n_bags):
+def updateWay(way_done,flight):
+    tracing=way_done.split(";")
+    cities=tracing[0]+","+flight.destination
+    planes="%s,%s" % (tracing[1],flight.flight_number)
+    new_way_done="%s;%s" % (cities,planes)
+    new_way_done=new_way_done.replace("\n","")
+    return new_way_done
+
+def updatePrice(price,flight,n_bags):
+    total=flight.price + n_bags * flight.bag_price
+    total+=price
+    return total
+
+def printfligh(itineracy,price):
+    total=str(price)
+    line="%s;%s" % (itineracy,total)
+    line=line.replace("\n","")
+    
+    print (line)
+    sys.stdout.flush()
+
+
+def addInitial(availables_flights,city,last_flight_taken,way_done,price,n_bags):
+    selected_flights=set()
+    for flights in availables_flights:
+        if flights.destination == city:
+            hours=calculateHours(flights.departure,last_flight_taken.arrival)
+            if  hours != False and hours > 1 and hours < 4:
+                    selected_flights.add(flights)
+
+    for next_flight in selected_flights:
+        new_way_done=updateWay(way_done,next_flight)
+        new_price=updatePrice(price,next_flight,n_bags)
+        printfligh(new_way_done,new_price)
+
+def coreFunction(availables_flights,first_city,cities_visited,last_flight_taken,way_done,price,n_bags):
     #include here the first flight taken in each instance to the stdout*****!!!!!!!!!!!
+    printfligh(way_done,price)
     selected_flights=set()
 
     for flights in availables_flights:
-        if last_flight_taken.destination==flights.source:
-            if flights.source not in cities_visited:
-                hours=calculatehours(flights.departure,last_flight_taken.arrival)
-                if  hours != False:
-                    if hours > 1 and hours < 4:
-                        ##########aqui
+        if last_flight_taken.destination == flights.source:
+            if flights.destination not in cities_visited:
+                hours=calculateHours(flights.departure,last_flight_taken.arrival)
+                if  hours != False and hours > 1 and hours < 4:
+                        selected_flights.add(flights)
 
 
+    # for itme in selected_flights:
+    #     itme.print_plane()
+    for next_flight in selected_flights:
+        newcities_visited=set()
+        for cities in cities_visited:
+            newcities_visited.add(cities)
+        newcities_visited.add(next_flight.source)
 
-    print("\n")
+        new_way_done=updateWay(way_done,next_flight)
+        new_price=updatePrice(price,next_flight,n_bags)
+        coreFunction(availables_flights,first_city,newcities_visited,next_flight,new_way_done,new_price,n_bags)
+
+    addInitial(availables_flights,first_city,last_flight_taken,way_done,price,n_bags)
 
 def starter(flights_set,n_bags=0):
     availables_flights=set()
@@ -83,15 +129,12 @@ def starter(flights_set,n_bags=0):
         cities_nonvisited=set()
 
         cities_visited.add(a_flight.source)
-        for all_flights in availables_flights:
-            if all_flights.source != a_flight.source:
-                cities_nonvisited.add(all_flights.source)
 
         way=a_flight.source+","+a_flight.destination+";"+a_flight.flight_number+"\n"
         price= a_flight.price + n_bags * a_flight.bag_price
 
 
-        core_function(availables_flights,a_flight.source,cities_visited,cities_nonvisited,a_flight,way,price,n_bags)
+        coreFunction(availables_flights,a_flight.source,cities_visited,a_flight,way,price,n_bags)
 
 
 #***************this is the first line of the main******************************
@@ -100,8 +143,6 @@ for line in sys.stdin:
     line = line.strip()
     createEach(flights_set,line)
     #print(line)
-for item in flights_set:
-    item.print_plane()
 
-print("\n hasta aqui es el primer set \n")
+
 starter(flights_set,0)
