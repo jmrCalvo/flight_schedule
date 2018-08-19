@@ -3,11 +3,11 @@ The program will output all the differents combinations that can be done accordi
 [Python weekend Kiwi.com](https://gist.github.com/martin-kokos/6ccdeeff45a33bce4849567b0395526c)
 
 ## Compile
-  There is two ways of use it:
+  The program has been runned in linux. There is two ways of use it:
 
       specifying the number of bags:                     cat input.csv | ./flight_combination.py 2 > output.csv
 
-      whithout specifying, predetimante value = 0:       cat input.csv | ./flight_combination.py > output.csv
+      whithout specifying, predetermined value = 0:      cat input.csv | ./flight_combination.py > output.csv
 
 ## Results obtained
 
