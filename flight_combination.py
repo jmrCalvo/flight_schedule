@@ -109,7 +109,7 @@ def printfligh(itineracy,price,time):
     line=line.replace("\n","")
 
     try:
-        print (line)
+        sys.stdout.write(line+"\n")
         sys.stdout.flush()
     except Exception as e:
         stderr.write('Error trying to write every solution found')
