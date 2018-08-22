@@ -19,9 +19,9 @@ The program will output all the differents combinations that can be done accordi
 
  **Example of output:**
 ```
-list of cities; list of flights;          departure_arrival;                         price
+list of cities;list of flights;departure_arrival;price
 
-DPS,HKT;      PV414;        2017-02-11T09:15:00_2017-02-11T12:55:00;                  67.0
-BWN,DPS;      PV042;        2017-02-12T22:50:00_2017-02-13T01:10:00;                  56.0
-DPS,HKT;      PV519;        2017-02-11T00:20:00_2017-02-11T04:00:00;                  79.0
+DPS,HKT;PV414;2017-02-11T09:15:00_2017-02-11T12:55:00;67.0
+BWN,DPS;PV042;2017-02-12T22:50:00_2017-02-13T01:10:00;56.0
+DPS,HKT,USM;PV260,PV634;2017-02-11T08:50:00_2017-02-11T12:30:00,2017-02-12T16:00:00_2017-02-12T16:55:00;  110.0
 ```
